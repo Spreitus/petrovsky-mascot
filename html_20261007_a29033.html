@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Петя — маскот Петровского колледжа</title>
+<meta name="description" content="Петя — студент Петровского колледжа в Санкт-Петербурге. Знакомство с колледжем, его историей, достижениями и студенческой жизнью.">
+<meta property="og:title" content="Петя — маскот Петровского колледжа">
+<meta property="og:description" content="Знакомьтесь: Петя, студент Петровского колледжа. История, достижения и жизнь студентов.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230E1B4A'/><text x='50' y='73' font-size='66' font-family='Arial' font-weight='bold' fill='%232FC4C9' text-anchor='middle'>П</text></svg>">
+
+<style>
+  :root{
+    --navy:#0E1B4A;
+    --navy-2:#16265E;
+    --blue:#1E3A8A;
+    --blue-2:#2B4BB5;
+    --teal:#2FC4C9;
+    --teal-2:#17A2A8;
+    --ice:#E8F7F9;
+    --white:#FFFFFF;
+    --text:#182241;
+    --muted:#5B6884;
+    --radius:24px;
+    --shadow:0 18px 40px rgba(14,27,74,.12);
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{
+    margin:0;
+    font-family:"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+    color:var(--text);
+    background:#F4FAFB;
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+  }
+  body::before{
+    content:"";
+    position:fixed; inset:0; z-index:-1; pointer-events:none;
+    background-image:
+      linear-gradient(rgba(47,196,201,.08) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(47,196,201,.08) 1px, transparent 1px);
+    background-size:52px 52px;
+  }
+
+  img{max-width:100%;display:block}
+
+  /* ---------- ШАПКА ---------- */
+  .site-header{
+    position:sticky; top:0; z-index:60;
+    background:linear-gradient(90deg,var(--navy),var(--blue));
+    color:#fff;
+    box-shadow:0 8px 26px rgba(14,27,74,.28);
+  }
+  .header-inner{
+    max-width:1140px; margin:0 auto; padding:12px 20px;
+    display:flex; align-items:center; gap:14px; flex-wrap:wrap;
+  }
+  .logo{
+    width:46px;height:46px;border-radius:14px;flex:0 0 auto;
+    background:linear-gradient(135deg,var(--teal),var(--teal-2));
+    display:grid;place-items:center;
+    font-weight:800;font-size:24px;color:var(--navy);
+    box-shadow:0 6px 16px rgba(47,196,201,.4);
+  }
+  .brand{display:flex;flex-direction:column;line-height:1.2;margin-right:auto}
+  .brand b{font-size:17px;letter-spacing:.2px}
+  .brand span{font-size:12.5px;color:#9FD9DD}
+  .nav{display:flex;gap:6px;flex-wrap:wrap}
+  .nav a{
+    color:#DCEBF5;text-decoration:none;font-size:14.5px;
+    padding:8px 13px;border-radius:12px;transition:.2s;
+  }
+  .nav a:hover{background:rgba(47,196,201,.22);color:#fff}
+
+  /* ---------- ГЕРОЙ ---------- */
+  .hero{
+    max-width:1140px;margin:34px auto;padding:0 20px;
+    display:grid;grid-template-columns:1.05fr .95fr;gap:30px;align-items:center;
+  }
+  .hero-card{
+    position:relative;overflow:hidden;
+    background:linear-gradient(160deg,var(--navy) 0%,var(--blue) 100%);
+    color:#fff;border-radius:30px;padding:42px 38px;
+    box-shadow:0 26px 60px rgba(14,27,74,.3);
+  }
+  .hero-card::after{
+    content:"";position:absolute;right:-90px;top:-90px;
+    width:260px;height:260px;border-radius:50%;
+    background:radial-gradient(circle,rgba(47,196,201,.35),transparent 68%);
+  }
+  .hero-card::before{
+    content:"";position:absolute;left:-70px;bottom:-90px;
+    width:230px;height:230px;border-radius:50%;
+    background:radial-gradient(circle,rgba(47,196,201,.2),transparent 70%);
+  }
+  .hero-card > *{position:relative;z-index:1}
+  .eyebrow{
+    display:inline-block;font-size:13px;letter-spacing:1.6px;text-transform:uppercase;
+    background:rgba(47,196,201,.2);color:#8FE6EA;border:1px solid rgba(47,196,201,.45);
+    padding:6px 14px;border-radius:999px;margin-bottom:18px;
+  }
+  .hero h1{
+    margin:0 0 14px;font-size:clamp(28px,4.2vw,46px);line-height:1.12;letter-spacing:-.5px;
+  }
+  .hero h1 em{font-style:normal;color:var(--teal)}
+  .hero p{margin:0 0 26px;font-size:17px;color:#D5E4F2;max-width:52ch}
+  .btn-row{display:flex;gap:12px;flex-wrap:wrap}
+  .btn{
+    display:inline-block;text-decoration:none;font-weight:600;font-size:15.5px;
+    padding:13px 24px;border-radius:14px;transition:.22s;border:2px solid transparent;
+  }
+  .btn-primary{background:linear-gradient(135deg,var(--teal),var(--teal-2));color:#06202A}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(47,196,201,.45)}
+  .btn-ghost{border-color:rgba(143,230,234,.6);color:#CFEAF3}
+  .btn-ghost:hover{background:rgba(47,196,201,.16);border-color:var(--teal)}
+
+  /* ---------- МАСКОТ + ОБЛАЧКО ---------- */
+  .mascot-wrap{display:flex;flex-direction:column;align-items:center;gap:16px}
+  .bubble{
+    position:relative;width:100%;max-width:430px;min-height:112px;
+    background:#fff;border:3px solid var(--teal);border-radius:24px;
+    padding:20px 24px;box-shadow:0 16px 36px rgba(14,27,74,.14);
+    display:flex;align-items:center;
+  }
+  .bubble p{margin:0;font-size:16.5px;color:var(--text)}
+  .bubble::after{
+    content:"";position:absolute;left:50%;bottom:-15px;
+    width:24px;height:24px;background:#fff;
+    border-right:3px solid var(--teal);border-bottom:3px solid var(--teal);
+    border-radius:0 0 7px 0;
+    transform:translateX(-50%) rotate(45deg);
+  }
+  @keyframes pop{
+    0%{transform:scale(.94);opacity:.35}
+    60%{transform:scale(1.025)}
+    100%{transform:scale(1);opacity:1}
+  }
+  .bubble.pop{animation:pop .34s ease-out}
+  .mascot{
+    width:min(330px,74vw);height:auto;cursor:pointer;
+    filter:drop-shadow(0 22px 30px rgba(14,27,74,.28));
+    transition:transform .3s ease;
+    animation:float 4.5s ease-in-out infinite;
+  }
+  @keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-9px)}}
+  .mascot:hover{transform:translateY(-6px) scale(1.02);animation-play-state:paused}
+
+  .bubble-nav{display:flex;align-items:center;gap:12px}
+  .bubble-nav button.arrow{
+    width:38px;height:38px;border-radius:50%;border:2px solid var(--teal);
+    background:#fff;color:var(--blue);font-size:20px;line-height:1;cursor:pointer;
+    display:grid;place-items:center;transition:.2s;font-weight:700;
+  }
+  .bubble-nav button.arrow:hover{background:var(--teal);color:#fff}
+  .dots{display:flex;gap:7px}
+  .dot{
+    width:9px;height:9px;border-radius:50%;border:none;padding:0;cursor:pointer;
+    background:rgba(30,58,138,.25);transition:.2s;
+  }
+  .dot.active{background:var(--teal);transform:scale(1.35)}
+
+  /* ---------- СЕКЦИИ ---------- */
+  .section{max-width:1140px;margin:0 auto;padding:58px 20px}
+  .section-title{
+    font-size:clamp(23px,3vw,34px);margin:0 0 10px;color:var(--navy);letter-spacing:-.4px;
+  }
+  .section-title::after{
+    content:"";display:block;width:74px;height:5px;border-radius:3px;margin-top:14px;
+    background:linear-gradient(90deg,var(--teal),var(--blue));
+  }
+  .section-sub{color:var(--muted);margin:16px 0 30px;max-width:75ch;font-size:16.5px}
+
+  .card{
+    background:#fff;border-radius:var(--radius);padding:28px 30px;
+    box-shadow:var(--shadow);border:1px solid rgba(47,196,201,.2);
+  }
+  .about-grid{display:grid;gap:20px}
+  .about-grid p{margin:0 0 16px}
+  .about-grid p:last-child{margin-bottom:0}
+  .about-grid strong{color:var(--blue)}
+
+  /* ---------- ЦИФРЫ ---------- */
+  .stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(165px,1fr));gap:18px}
+  .stat{
+    background:#fff;border-radius:20px;padding:24px 18px;text-align:center;
+    border-top:5px solid var(--teal);box-shadow:var(--shadow);
+    transition:transform .25s;
+  }
+  .stat:hover{transform:translateY(-5px)}
+  .stat b{display:block;font-size:36px;line-height:1.05;color:var(--blue);font-weight:800}
+  .stat span{display:block;margin-top:8px;color:var(--muted);font-size:14.5px}
+
+  /* ---------- ИСТОРИЯ ---------- */
+  .timeline{position:relative;margin-top:10px;padding-left:30px}
+  .timeline::before{
+    content:"";position:absolute;left:8px;top:8px;bottom:8px;width:3px;border-radius:3px;
+    background:linear-gradient(var(--teal),var(--blue));
+  }
+  .tl-item{position:relative;margin-bottom:24px}
+  .tl-item:last-child{margin-bottom:0}
+  .tl-item::before{
+    content:"";position:absolute;left:-29px;top:8px;width:14px;height:14px;border-radius:50%;
+    background:var(--teal);border:3px solid #fff;box-shadow:0 0 0 2px var(--teal);
+  }
+  .tl-year{font-weight:800;color:var(--blue);font-size:18px}
+  .tl-text{color:var(--muted);font-size:16px}
+
+  /* ---------- ЖИЗНЬ СТУДЕНТОВ ---------- */
+  .life-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px}
+  .life-card{
+    background:#fff;border-radius:20px;padding:24px;box-shadow:var(--shadow);
+    border-left:5px solid var(--teal);transition:transform .25s,box-shadow .25s;
+  }
+  .life-card:hover{transform:translateY(-5px);box-shadow:0 24px 46px rgba(14,27,74,.16)}
+  .life-card .ico{font-size:26px;line-height:1;margin-bottom:10px}
+  .life-card h3{margin:0 0 8px;font-size:17.5px;color:var(--navy)}
+  .life-card p{margin:0;color:var(--muted);font-size:15.3px}
+
+  /* ---------- QR ---------- */
+  .qr-card{
+    display:flex;gap:34px;align-items:center;flex-wrap:wrap;
+    background:linear-gradient(150deg,var(--navy),var(--blue));
+    color:#fff;border-radius:28px;padding:34px;box-shadow:0 26px 60px rgba(14,27,74,.3);
+  }
+  .qr-card h2{color:#fff}
+  .qr-card h2::after{background:linear-gradient(90deg,var(--teal),#8FE6EA)}
+  .qr-box{
+    background:#fff;border-radius:20px;padding:16px;text-align:center;flex:0 0 auto;
+    box-shadow:0 14px 30px rgba(0,0,0,.25);
+  }
+  .qr-box img{width:230px;height:230px;border-radius:10px}
+  .qr-text{flex:1 1 320px;min-width:260px}
+
+  /* ---------- ПОДВАЛ ---------- */
+  .site-footer{
+    margin-top:40px;background:linear-gradient(90deg,var(--navy),var(--blue));
+    color:#BBD0E4;padding:34px 20px;text-align:center;font-size:14.5px;
+  }
+  .site-footer b{color:#fff}
+  .site-footer .teal{color:var(--teal)}
+
+  /* ---------- АДАПТИВ ---------- */
+  @media (max-width:900px){
+    .hero{grid-template-columns:1fr;gap:22px}
+    .mascot-wrap{order:-1}
+    .hero-card{padding:32px 24px}
+    .section{padding:44px 20px}
+    .qr-card{padding:26px}
+    .qr-box{margin:0 auto}
+  }
+  @media (max-width:520px){
+    .nav{display:none}
+    .bubble{min-height:96px;padding:16px 18px}
+    .bubble p{font-size:15.5px}
+    .stat b{font-size:30px}
+  }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="header-inner">
+    <div class="logo">П</div>
+    <div class="brand">
+      <b>Петровский колледж</b>
+      <span>Санкт-Петербург · с 1944 года</span>
+    </div>
+    <nav class="nav">
+      <a href="#about">О колледже</a>
+      <a href="#numbers">Достижения</a>
+      <a href="#history">История</a>
+      <a href="#life">Жизнь студентов</a>
+      <a href="#qr">QR-код</a>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="hero-card">
+    <span class="eyebrow">Знакомьтесь</span>
+    <h1>Привет! Я <em>Петя</em> —<br>маскот Петровского колледжа</h1>
+    <p>Я один из студентов Петровского колледжа. Предлагаю вместе заглянуть внутрь и узнать,
+       чем он живёт, какие у него достижения и почему здесь интересно учиться.</p>
+    <div class="btn-row">
+      <a class="btn btn-primary" href="#about">Заглянуть в колледж</a>
+      <a class="btn btn-ghost" href="#life">Жизнь студентов</a>
+    </div>
+  </div>
+
+  <div class="mascot-wrap">
+    <div class="bubble" id="bubble" aria-live="polite">
+      <p id="bubbleText">Привет! Я Петя, студент Петровского колледжа. Давай знакомиться!</p>
+    </div>
+
+    <img id="mascotImg" class="mascot" src="petya.png"
+         alt="Петя — маскот Петровского колледжа" title="Нажми на меня — расскажу ещё что-нибудь!">
+
+    <div class="bubble-nav">
+      <button class="arrow" id="prevBtn" type="button" aria-label="Предыдущая фраза">‹</button>
+      <div class="dots" id="dots"></div>
+      <button class="arrow" id="nextBtn" type="button" aria-label="Следующая фраза">›</button>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <h2 class="section-title">О колледже</h2>
+  <p class="section-sub">Немного истории и фактов — чтобы понять, куда мы тебя приглашаем.</p>
+
+  <div class="card about-grid">
+    <p>Петровский колледж является одним из известных учреждений среднего профессионального
+       образования Санкт-Петербурга и обладает богатой историей, начало которой относится
+       к <strong>1944 году</strong>. За прошедшие десятилетия колледж прошёл значительный путь
+       развития: от учреждения, осуществлявшего подготовку мастеров производственного обучения,
+       до современного образовательного учреждения, ориентированного на подготовку специалистов
+       по актуальным профессиям и развитие практических компетенций.</p>
+
+    <p>В <strong>1997 году</strong> колледжу было присвоено его современное название —
+       <strong>Петровский колледж</strong>. В настоящее время в колледже созданы условия для
+       получения качественного профессионального образования, формирования практических навыков
+       и реализации индивидуальной образовательной траектории студентов.</p>
+
+    <p>Колледж демонстрирует высокие результаты в профессиональных конкурсах и чемпионатах,
+       включая <strong>WorldSkills</strong> и <strong>«Профессионалы»</strong>, и с 2019 года также
+       выступает организатором конкурсных площадок. В <strong>2024 году</strong> Петровский колледж
+       занял <strong>II место</strong> в медальном зачёте регионального этапа чемпионата
+       «Профессионалы» в Санкт-Петербурге. В <strong>2026 году</strong> студенты колледжа завоевали
+       <strong>41 медаль</strong>, в том числе 19 золотых, 12 серебряных и 10 бронзовых, что обеспечило
+       колледжу второе место среди учреждений среднего профессионального образования Санкт-Петербурга
+       по количеству медалей. Колледж также неоднократно становился лауреатом премий Правительства
+       Санкт-Петербурга и отмечался за высокое качество подготовки специалистов.</p>
+
+    <p>Петровский колледж обеспечивает условия для приобретения профессиональных знаний и навыков,
+       развития способностей студентов и достижения ими высоких результатов. Обучающиеся получают
+       возможность освоить востребованные профессиональные компетенции, реализовать индивидуальный
+       потенциал и принять участие в деятельности студенческого сообщества, ориентированной
+       на профессиональное и личностное развитие.</p>
+  </div>
+</section>
+
+<section class="section" id="numbers">
+  <h2 class="section-title">Достижения в цифрах</h2>
+  <p class="section-sub">Сухие цифры, за которыми — победы наших студентов.</p>
+
+  <div class="stats">
+    <div class="stat"><b>1944</b><span>год основания колледжа</span></div>
+    <div class="stat"><b>1997</b><span>получено имя «Петровский колледж»</span></div>
+    <div class="stat"><b>2019</b><span>стали организатором конкурсных площадок</span></div>
+    <div class="stat"><b>41</b><span>медаль студентов в 2026 году</span></div>
+    <div class="stat"><b>19</b><span>золотых медалей</span></div>
+    <div class="stat"><b>12</b><span>серебряных медалей</span></div>
+    <div class="stat"><b>10</b><span>бронзовых медалей</span></div>
+    <div class="stat"><b>II</b><span>место в медальном зачёте Санкт-Петербурга</span></div>
+  </div>
+</section>
+
+<section class="section" id="history">
+  <h2 class="section-title">Коротко о пути</h2>
+  <p class="section-sub">От мастеров производственного обучения — до современных профессий.</p>
+
+  <div class="card">
+    <div class="timeline">
+      <div class="tl-item">
+        <div class="tl-year">1944</div>
+        <div class="tl-text">Начало истории колледжа. Учреждение готовило мастеров производственного обучения.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">1997</div>
+        <div class="tl-text">Колледжу присвоено современное название — Петровский колледж.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2019</div>
+        <div class="tl-text">Колледж становится организатором конкурсных площадок чемпионатов.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2024</div>
+        <div class="tl-text">II место в медальном зачёте регионального этапа чемпионата «Профессионалы» в Санкт-Петербурге.</div>
+      </div>
+      <div class="tl-item">
+        <div class="tl-year">2026</div>
+        <div class="tl-text">41 медаль (19 золотых, 12 серебряных, 10 бронзовых) и второе место среди ссузов Санкт-Петербурга.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="life">
+  <h2 class="section-title">Чем живут студенты</h2>
+
+  <div class="life-grid">
+    <div class="life-card">
+      <div class="ico">🏆</div>
+      <h3>Конкурсы профмастерства</h3>
+      <p>WorldSkills и «Профессионалы» — не просто слова: наши студенты привозят оттуда медали,
+         а колледж с 2019 года сам организует конкурсные площадки.</p>
+    </div>
+    <div class="life-card">
+      <div class="ico">🛠️</div>
+      <h3>Практика и компетенции</h3>
+      <p>Учимся на актуальных профессиях и сразу закрепляем теорию делом — так знания превращаются
+         в реальные практические навыки.</p>
+    </div>
+    <div class="life-card">
+      <div class="ico">🧭</div>
+      <h3>Своя траектория</h3>
+      <p>У каждого студента есть возможность выстроить индивидуальный образовательный маршрут
+         и углубляться в то, что действительно интересно.</p>
+    </div>
+    <div class="life-card">
+      <div class="ico">🤝</div>
+      <h3>Студенческое сообщество</h3>
+      <p>Проекты, конкурсы, совместные дела и люди рядом — участие в жизни сообщества помогает
+         расти и в профессии, и лично.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="qr">
+  <div class="qr-card">
+    <div class="qr-box">
+      <img id="qr" alt="QR-код сайта-визитки" src="">
+    </div>
+    <div class="qr-text">
+      <h2 class="section-title">QR-код сайта</h2>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <p><b>Петровский колледж</b> · Санкт-Петербург · с 1944 года</p>
+  <p>Маскот <span class="teal">Петя</span> — совместный проект студентов и преподавателей колледжа</p>
+</footer>
+
+<script>
+/* ================= ФРАЗЫ ПЕТИ ================= */
+const phrases = [
+  "Привет! Я Петя, студент Петровского колледжа. Давай знакомиться!",
+  "Наш колледж — один из известных ссузов Санкт-Петербурга, а его история началась ещё в 1944 году.",
+  "Мы учимся по актуальным профессиям и сразу закрепляем теорию практикой — так навыки становятся настоящими.",
+  "С 2019 года колледж сам организует конкурсные площадки чемпионатов WorldSkills и «Профессионалы».",
+  "В 2026 году наши студенты взяли 41 медаль: 19 золотых, 12 серебряных и 10 бронзовых!",
+  "А ещё мы вторые в медальном зачёте среди ссузов Санкт-Петербурга. Гордимся!",
+  "У каждого студента своя образовательная траектория: можно углубляться в то, что действительно нравится.",
+  "Студенческое сообщество — это проекты, конкурсы, общие дела и просто классные люди рядом.",
+  "Приходи знакомиться! Может быть, следующая медаль колледжа будет твоей."
+];
+
+const bubble      = document.getElementById('bubble');
+const bubbleText  = document.getElementById('bubbleText');
+const dotsWrap    = document.getElementById('dots');
+const mascotImg   = document.getElementById('mascotImg');
+
+let idx = 0;
+let timer = null;
+
+phrases.forEach((_, i) => {
+  const d = document.createElement('button');
+  d.type = 'button';
+  d.className = 'dot';
+  d.setAttribute('aria-label', 'Фраза ' + (i + 1));
+  d.addEventListener('click', () => go(i));
+  dotsWrap.appendChild(d);
+});
+
+function render(){
+  bubbleText.textContent = phrases[idx];
+  Array.from(dotsWrap.children).forEach((d, i) =>
+    d.classList.toggle('active', i === idx)
+  );
+  bubble.classList.remove('pop');
+  void bubble.offsetWidth;
+  bubble.classList.add('pop');
+}
+
+function restart(){
+  clearInterval(timer);
+  timer = setInterval(() => {
+    idx = (idx + 1) % phrases.length;
+    render();
+  }, 8000);
+}
+
+function go(n){
+  idx = (n + phrases.length) % phrases.length;
+  render();
+  restart();
+}
+
+document.getElementById('nextBtn').addEventListener('click', () => go(idx + 1));
+document.getElementById('prevBtn').addEventListener('click', () => go(idx - 1));
+mascotImg.addEventListener('click', () => go(idx + 1));
+
+render();
+restart();
+
+/* ================= ЗАПАСНАЯ КАРТИНКА ================= */
+let imgFallbackUsed = false;
+mascotImg.addEventListener('error', () => {
+  if (imgFallbackUsed) return;
+  imgFallbackUsed = true;
+  const svg = `
+  <svg xmlns="http://www.w3.org/2000/svg" width="400" height="480" viewBox="0 0 400 480">
+    <rect width="400" height="480" rx="36" fill="#E8F7F9" stroke="#2FC4C9" stroke-width="6" stroke-dasharray="14 12"/>
+    <text x="200" y="215" text-anchor="middle" font-family="Arial" font-size="74" font-weight="bold" fill="#1E3A8A">П</text>
+    <text x="200" y="278" text-anchor="middle" font-family="Arial" font-size="19" fill="#0E1B4A">Положите картинку маскота</text>
+    <text x="200" y="308" text-anchor="middle" font-family="Arial" font-size="19" fill="#0E1B4A">рядом с файлом сайта</text>
+    <text x="200" y="348" text-anchor="middle" font-family="Courier New" font-size="22" font-weight="bold" fill="#17A2A8">petya.png</text>
+  </svg>`;
+  mascotImg.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svg);
+  mascotImg.style.cursor = 'default';
+});
+
+/* ================= QR-КОД ================= */
+const pageUrl   = location.href.split('#')[0];
+const qrImg     = document.getElementById('qr');
+
+const qrService = u =>
+  'https://api.qrserver.com/v1/create-qr-code/?size=460x460&margin=14&color=0E1B4A&bgcolor=FFFFFF&data='
+  + encodeURIComponent(u);
+
+qrImg.src = qrService(pageUrl);
+qrImg.alt = 'QR-код: ' + pageUrl;
+</script>
+</body>
+</html>
